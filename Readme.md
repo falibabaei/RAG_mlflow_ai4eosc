@@ -50,8 +50,8 @@ Create a `.env` file in the root directory:
 export MLFLOW_TRACKING_URI=your_tracking_uri
 export MLFLOW_TRACKING_USERNAME=your_username
 export MLFLOW_TRACKING_PASSWORD=your_password
-GROQ_API_KEY=your_api_key_here
-BASE_URL=https://api.groq.com/openai/v1
+export GROQ_API_KEY=your_api_key_here
+export BASE_URL=https://api.groq.com/openai/v1
 ```
 
 4. Prepare Data
