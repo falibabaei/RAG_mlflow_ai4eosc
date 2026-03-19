@@ -18,6 +18,7 @@ This project implements a **Retrieval-Augmented Generation (RAG)** pipeline usin
 ---
 
 ## Project Structure
+```bash
 RAG_mlflow_ai4eosc/
 │
 ├── data/                # Stores input datasets and documents used for retrieval (knowledge base for RAG)
@@ -29,7 +30,7 @@ RAG_mlflow_ai4eosc/
 │
 ├── requirements.txt     # Lists all Python dependencies required to run the project
 └── README.md            # Project documentation with setup instructions and usage details
-
+```
 ##  Setup
 
 ### 1. Clone the repository
