@@ -9,7 +9,7 @@ load_dotenv()
 # Configuration
 API_KEY = os.getenv("GROQ_API_KEY")
 BASE_URL = "https://api.groq.com/openai/v1"
-MODEL_URI = "mlflow-artifacts:/19/models/m-af1e06632d494041aa6ac7aab704b95c/artifacts"
+MODEL_URI = "mlflow-artifacts:/5/models/m-04ae4a57d36d4f1b99ed7fe1d32aad86/artifacts"
 INPUT_QUERIES = [
     "how to use LLM on the ai4eosc platform?",
     "how to deploy my model in ai4eosc platform?"

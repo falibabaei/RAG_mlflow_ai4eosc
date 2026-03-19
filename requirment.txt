@@ -4,3 +4,5 @@ sentence-transformers
 faiss-cpu
 faiss-gpu 
 nltk
+evaluate
+textstat

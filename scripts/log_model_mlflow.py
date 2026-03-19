@@ -113,10 +113,7 @@ class PyfuncWithRetrieval(mlflow.pyfunc.PythonModel):
 
             Answer strictly from the context. If the answer is not in the context, say you don't know.
             """
-            prompt = mlflow.genai.register_prompt(
-               name="RAG-prompt",
-              template=prompt,
-)
+
             completion= self.client.chat.completions.create(
                 model=model_name,
                 messages=[{'role': "system", "content": "You are a helpful assistant."},
@@ -153,29 +150,29 @@ Answer strictly from the context. If the answer is not in the context, say you d
     with mlflow.start_run(run_name="rag_model_demo") as run:
 
         
-        prompt = mlflow.genai.register_prompt(
-               name="RAG-prompt",
-              template=chat_template,
-              commit_message="Initial commit",
-        tags={
-            "author": "f.alibabaee@gmail.com",
-            "task": "question-answering",
-            "language": "en",
-        },
-)
-    print(f"Created prompt '{prompt.name}' (version {prompt.version})")
-        #log the model artifact 
-      #  model_info = mlflow.pyfunc.log_model(
-     #       artifact_path="rag_model",
-     #       python_model=PyfuncWithRetrieval(docs=None),
-     #       artifacts={"vector_db": "vector_db.pkl"},
-     #       input_example=pd.DataFrame({"queries": ["What is the ai4eosc project?"], "model_name": ["llama-3.3-70b-versatile"]}),    
-     #       signature=infer_signature(
-     #       params= params_example,
-     #       model_input=input_example,
-       #     model_output=pd.DataFrame({"query": ["What is the ai4eosc project?"], "answer": ["The ai4eosc project is an initiative to..."]})
-     #   ), 
+        #prompt = mlflow.genai.register_prompt(
+        #       name="RAG-prompt",
+        #      template=chat_template,
+        #      commit_message="Initial commit",
+       # tags={
+       #     "author": "f.alibabaee@gmail.com",
+       #     "task": "question-answering",
+       #     "language": "en",
+       # },
+#)
+    #print(f"Created prompt '{prompt.name}' (version {prompt.version})")
+    #log the model artifact 
+        model_info = mlflow.pyfunc.log_model(
+            artifact_path="rag_model",
+            python_model=PyfuncWithRetrieval(docs=None),
+            artifacts={"vector_db": "vector_db.pkl"},
+            input_example=pd.DataFrame({"queries": ["What is the ai4eosc project?"], "model_name": ["llama-3.3-70b-versatile"]}),    
+            signature=infer_signature(
+            params= params_example,
+            model_input=input_example,
+            model_output=pd.DataFrame({"query": ["What is the ai4eosc project?"], "answer": ["The ai4eosc project is an initiative to..."]})
+        ), 
              
-       #     pip_requirements=["openai", "sentence-transformers", "faiss-cpu", "nltk",'mlflow']
-      #  )
-      #  print(f"Model logged with run_id: {run.info.run_id} and model_uri: {model_info.model_uri}")
+            pip_requirements=["openai", "sentence-transformers", "faiss-cpu", "nltk",'mlflow']
+        )
+        print(f"Model logged with run_id: {run.info.run_id} and model_uri: {model_info.model_uri}")
