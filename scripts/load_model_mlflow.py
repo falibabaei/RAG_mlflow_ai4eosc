@@ -2,19 +2,27 @@ import os
 from dotenv import load_dotenv
 import mlflow
 import pandas as pd
-
+from mlflow.genai.scorers import Correctness
 # Load environment variables
 load_dotenv()
 
 # Configuration
 API_KEY = os.getenv("GROQ_API_KEY")
 BASE_URL = "https://api.groq.com/openai/v1"
-MODEL_URI = "mlflow-artifacts:/5/models/m-04ae4a57d36d4f1b99ed7fe1d32aad86/artifacts"
+MODEL_URI = "mlflow-artifacts:/17/models/m-b0c1e6e13a3e4d2a9cc68a153fdec845/artifacts"
 INPUT_QUERIES = [
     "how to use LLM on the ai4eosc platform?",
+    
     "how to deploy my model in ai4eosc platform?"
 ]
-
+eval_dataset = [
+    {
+        "inputs": {"query": "how to use LLM on the ai4eosc platform?"},
+        "expectations": {
+            "expected_response": "The response should explain how to use LLM on the ai4eosc platform from the documentation."
+        },
+    },
+]
 print(f"Using API Key: {API_KEY[:4]}...{API_KEY[-4:]}")  # only partial display for security
 
 # Load the MLflow model
@@ -26,7 +34,12 @@ input_data = pd.DataFrame({
     "model_name": ["llama-3.3-70b-versatile"] * len(INPUT_QUERIES)
 })
 
-def model_wrapper(df):
+def model_wrapper(query):
+    df = pd.DataFrame({
+        "queries": [query],
+        "model_name": ["llama-3.3-70b-versatile"]
+    })
+
     return model.predict(
         df,
         params={
@@ -54,15 +67,11 @@ with mlflow.start_run(run_name="rag_inference"):
             params={"api_key": API_KEY, "base_url": BASE_URL}
         )
 
-        evaluation_result = mlflow.evaluate(
-            model=model_wrapper,
-            data=single_input,
-            predictions="answer",
-            model_type='text'
-
-    
-          )
-
+        evaluation_result =mlflow.genai.evaluate(
+            data=eval_dataset,
+             scorers=[Correctness(model='groq:/llama-3.3-70b-versatile')],
+            predict_fn= model_wrapper
+        )
         # Rebuild the prompt for logging (or modify predict() to return it)
         #prompt_text = f"Question: {query}"
 

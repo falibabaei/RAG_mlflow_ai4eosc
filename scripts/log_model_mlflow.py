@@ -111,7 +111,8 @@ class PyfuncWithRetrieval(mlflow.pyfunc.PythonModel):
 
             Question: {query}
 
-            Answer strictly from the context. If the answer is not in the context, say you don't know.
+            Answer using the context as much as possible. If the answer is not explicitly in the context, 
+            make an informed response and indicate uncertainty if needed, but try to provide helpful information.
             """
 
             completion= self.client.chat.completions.create(

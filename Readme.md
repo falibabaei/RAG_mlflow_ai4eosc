@@ -7,7 +7,7 @@ This project implements a **Retrieval-Augmented Generation (RAG)** pipeline usin
 ##  Features
 
 -  **Semantic Retrieval** using Sentence Transformers + FAISS  
--  **LLM-based Answer Generation** (via Groq / OpenAI-compatible API)  
+-  **LLM-based Answer Generation** (via Groq or any other API / OpenAI-compatible API)  
 -  **MLflow Integration** for:
   - Model logging
   - Evaluation

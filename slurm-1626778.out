@@ -1,0 +1,56 @@
+2026-03-24 11:43:41.969915: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-24 11:43:42.024785: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-24 11:43:44.164009: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/hkfs/home/haicore/scc/se1131/tf_algos/lib64/python3.9/site-packages/mlflow/pyfunc/utils/data_validation.py:186: UserWarning: [33mAdd type hints to the `predict` method to enable data validation and automatic signature inference during model logging. Check https://mlflow.org/docs/latest/model/python_model.html#type-hint-usage-in-pythonmodel for more details.[0m
+  color_warning(
+2026/03/24 11:43:47 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+Batches:   0%|          | 0/9 [00:00<?, ?it/s]Batches:  11%|█         | 1/9 [00:00<00:01,  5.18it/s]Batches:  56%|█████▌    | 5/9 [00:00<00:00, 15.85it/s]Batches: 100%|██████████| 9/9 [00:00<00:00, 20.55it/s]
+2026/03/24 11:43:51 INFO mlflow.pyfunc: Validating input example against model signature
+Downloading artifacts:   0%|          | 0/1 [00:00<?, ?it/s]Downloading artifacts: 100%|██████████| 1/1 [00:00<00:00, 2020.38it/s]Downloading artifacts: 100%|██████████| 1/1 [00:00<00:00, 1667.72it/s]
+Batches:   0%|          | 0/9 [00:00<?, ?it/s]Batches:  33%|███▎      | 3/9 [00:00<00:00, 27.97it/s]Batches:  78%|███████▊  | 7/9 [00:00<00:00, 32.60it/s]Batches: 100%|██████████| 9/9 [00:00<00:00, 36.94it/s]
+2026/03/24 11:43:55 WARNING mlflow.models.model: Failed to validate serving input example {
+  "dataframe_split": {
+    "columns": [
+      "queries",
+      "model_name"
+    ],
+    "data": [
+      [
+        "What is the ai4eosc project?",
+        "llama-3.3-70b-versatile"
+      ]
+    ]
+  }
+}. Alternatively, you can avoid passing input example and pass model signature instead when logging the model. To ensure the input example is valid prior to serving, please try calling `mlflow.models.validate_serving_input` on the model uri and serving input example. A serving input example can be generated from model input example using `mlflow.models.convert_input_example_to_serving_input` function.
+Got error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+2026/03/24 11:43:55 INFO mlflow.models.model: Found the following environment variables used during model inference: [GROQ_API_KEY]. Please check if you need to set them when deploying the model. To disable this message, set environment variable `MLFLOW_RECORD_ENV_VARS_IN_MODEL_LOGGING` to `false`.
+AI4OS Documentation Documentation 204 Chapter 25. Support a new project
+CHAPTER THREE PLATFORM OVERVIEW AI4EOSC provides a comprehensive platform for artificial intelligence and machine learning applications for scien- tific usecases. The project offers a federated computing infrastructure and shared services that enable researchers, developers, and organizations to collaborate on AI model development, training, and deployment at scale. /inf⌢-circleA note on terminology AI4OS is the name of the software stack described in this documentation. AI4EOSC is the project that initially developed that stack and is currently maintaining it. AI4EOSC also host a particular deployment of the AI4OS stack components (undercloud.ai4eosc.eu). For example: • TheDashboard deployed as the AI4EOSC Dashboard, • TheStoragedeployed as the AI4EOSC Storage, • etc. In this regard, it is similar to other projects who have adopted the AI4OS Stack, like iMagine who deployed it’s own version of the AI4OS Dashboard as the iMagine Dashboard. To reduce duplicities and lower the entry barrier for external projects, many AI4OS components deployed by AI4EOSC (e.g. the CI/CD pipeline or the Login) also serve others projects, like iMagine. 3.1 Components There are several different components in the AI4OS/AI4EOSC stack that are relevant for the users.
+CHAPTER THREE PLATFORM OVERVIEW AI4EOSC provides a comprehensive platform for artificial intelligence and machine learning applications for scien- tific usecases. The project offers a federated computing infrastructure and shared services that enable researchers, developers, and organizations to collaborate on AI model development, training, and deployment at scale. /inf⌢-circleA note on terminology AI4OS is the name of the software stack described in this documentation. AI4EOSC is the project that initially developed that stack and is currently maintaining it. AI4EOSC also host a particular deployment of the AI4OS stack components (undercloud.ai4eosc.eu). For example: • TheDashboard deployed as the AI4EOSC Dashboard, • TheStoragedeployed as the AI4EOSC Storage, • etc. In this regard, it is similar to other projects who have adopted the AI4OS Stack, like iMagine who deployed it’s own version of the AI4OS Dashboard as the iMagine Dashboard. To reduce duplicities and lower the entry barrier for external projects, many AI4OS components deployed by AI4EOSC (e.g. the CI/CD pipeline or the Login) also serve others projects, like iMagine. 3.1 Components There are several different components in the AI4OS/AI4EOSC stack that are relevant for the users. Later on you will see how each different type of user can take advantage of the different components. 3.1.1 Dashboard The Dashboard allows users to access computing resources to deploy, perform inference and train AI modules. The Dashboardsimplifiesthedeploymentandhidessomeofthetechnicalpartsthatmostusersdonotneedtoworryabout. 3.1.2 AI modules The AI modulesare developed both by the platform and by users. For creating modules, we provide the AI Modules Template as a starting point. Every AI module of the platform exposes it’s functionality under acommon API, so that models can be accessed in a consistent way. In addition to AI modules, the Dashboard also allows to deploy tools (eg. a Federated Server). 9
+AI4OS Documentation Documentation AI4OS consortium Mar 13, 2026
+AI4OS Documentation Documentation 156 Chapter 13. AI4EOSC LLM
+Model logged with run_id: 91126e6715e24d9fa13a28e261052efc and model_uri: models:/m-96bb1cbdd45643acbbbcf0c091f4fa26
+🏃 View run rag_model_demo at: https://mlflow-oidc.dev.ai4eosc.eu/#/experiments/5/runs/91126e6715e24d9fa13a28e261052efc
+🧪 View experiment at: https://mlflow-oidc.dev.ai4eosc.eu/#/experiments/5
+
+============================= JOB FEEDBACK =============================
+
+Job ID: 1626778
+Cluster: haic
+User/Group: se1131/scc
+Account: scc
+State: COMPLETED (exit code 0)
+Partition: normal
+Nodes: 1
+Cores per node: 38
+Nodelist: haicn1707
+CPU Utilized: 00:00:14
+CPU Efficiency: 0.86% of 00:27:14 core-walltime
+Job Wall-clock time: 00:00:43
+Starttime: Tue Mar 24 11:43:24 2026
+Endtime: Tue Mar 24 11:44:07 2026
+Memory Utilized: 1.36 GB
+Memory Efficiency: 1.11% of 122.46 GB (3.22 GB/core)
+Energy Consumed: 20984 Joule / 5.82888888888889 Watthours
+Average node power draw: 488 Watt
